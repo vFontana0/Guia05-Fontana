@@ -8,17 +8,6 @@ private LocalDate fechaInicio;
 private LocalDate fechaFin;
 private LocalDate hoy = LocalDate.now();
 private LocalDate fechaFinReal = null;
-@Override
-
-
-
-public double Precio() {
-	if(fechaFinReal != null) {
-		return (ChronoUnit.DAYS.between(fechaInicio, fechaFinReal))*herramienta.getCostoPorDia();
-	} else {
-		return (ChronoUnit.DAYS.between(fechaInicio, hoy))*herramienta.getCostoPorDia();
-	}
-}
 
 public Alquiler(Herramienta herramienta, LocalDate fechaInicio, int cantDias) {
 	this.herramienta = herramienta;
@@ -26,6 +15,14 @@ public Alquiler(Herramienta herramienta, LocalDate fechaInicio, int cantDias) {
 	this.fechaFin = fechaInicio.plusDays(cantDias);
 	this.fechaFinReal = null;
 }
+	
+public double Precio() {
+	if(fechaFinReal != null) {
+		return (ChronoUnit.DAYS.between(fechaInicio, fechaFinReal))*herramienta.getCostoPorDia();
+	} else {
+		return (ChronoUnit.DAYS.between(fechaInicio, hoy))*herramienta.getCostoPorDia();
+	}
+}	
 
 public Boolean enMora() {
 	Boolean ret = false;
